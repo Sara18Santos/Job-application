@@ -8,7 +8,7 @@ export default function Home() {
             <p className="text-muted-foreground mb-10 text-xl">
               Capture, organize, and manage you job search in one place.
             </p>
-            <div>
+            <div className="flex flex-col items-center gap-4">
               <button>Start for free</button>
               <p>Free forever. No credit card required.</p>
             </div>
