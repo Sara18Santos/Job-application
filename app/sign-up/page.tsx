@@ -24,6 +24,8 @@ export default function SignUp() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  console.log("SignUp component rendered"); // Debug log to verify component rendering
+
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -38,6 +40,7 @@ export default function SignUp() {
         email,
         password,
       });
+      console.log("Sign up result:", result); // Debug log to check the result of sign-up attempt
 
       if (result.error) {
         setError(result.error.message ?? "Failed to sign up");
@@ -45,6 +48,7 @@ export default function SignUp() {
         router.push("/dashboard");
       }
     } catch (err) {
+      console.error("Sign up error:", err); // Debug log to check unexpected errors
       setError("An unexpected error occurred");
     } finally {
       setLoading(false); // Ensure loading state is reset after the operation completes
