@@ -14,9 +14,10 @@ export interface JobApplication {
 }
 
 export interface Column {
-    _id: string;
-    name: string;
-    jobApplications: JobApplication[];
+  _id: string;
+  name: string;
+  order: number;
+  jobApplications: JobApplication[];
 }
 
 export interface Board {
