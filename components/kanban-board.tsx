@@ -21,7 +21,7 @@ import {
 import { Button } from "./ui/button";
 import CreateJobApplicationDialog from "./create-job-dialog";
 import JobApplicationCard from "./job-application-card";
-
+import { useBoard } from "@/lib/hooks/useBoards";
 import {
   closestCorners,
   DndContext,
@@ -39,7 +39,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useState } from "react";
+import { use, useState } from "react";
 
 interface KanbanBoardProps {
   board: Board;
@@ -192,7 +192,7 @@ function SortableJobCard({
 export default function KanbanBoard({ board, userId }: KanbanBoardProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   // TODO: Replace with real board logic
-  const columns = board.columns || [];
+  const {columns, moveJob} = useBoard(board);
   const sortedColumns = columns?.sort((a: Column, b: Column) => a.order - b.order) || [];
 
   const sensors = useSensors(
