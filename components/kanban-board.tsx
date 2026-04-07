@@ -320,12 +320,13 @@ export default function KanbanBoard({ board, userId }: KanbanBoardProps) {
               color: "bg-gray-500",
               icon: <Calendar className="h-4 w-4" />,
             };
+            const boardId = board.id;
             return (
               <DroppableColumn
                 key={key}
                 column={col}
                 config={config}
-                boardId={board.id}
+                boardId={boardId}
                 sortedColumns={sortedColumns}
               />
             );

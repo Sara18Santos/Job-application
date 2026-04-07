@@ -37,10 +37,11 @@ export default function Navbar() {
                 </Button>
               </Link>
               <DropdownMenu>
-                <DropdownMenuTrigger>
+                <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="relative h-8 w-8 rounded-full"
+                    className="relative h-8 w-8 rounded-full p-0"
+                    asChild
                   >
                     <Avatar className="h-8 w-8">
                       <AvatarFallback className="bg-primary text-white">

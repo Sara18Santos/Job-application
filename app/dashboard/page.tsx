@@ -4,21 +4,36 @@ import { Board } from "@/lib/models";
 import { redirect } from "next/navigation";
 import KanbanBoard from "@/components/kanban-board";
 import { Suspense } from "react";
+import { initializeUserBoard } from "@/lib/init-user-board";
 
 async function getBoard(userId: string) {
   "use cache";
 
   await connectDB();
 
-  const boardDoc = await Board.findOne({
+  let boardDoc = await Board.findOne({
     userId: userId,
-    name: "Job Hunt",
+    name: "My Job Hunt",
   }).populate({
     path: "columns",
     populate: {
       path: "jobApplications",
     },
   });
+
+  // If not found, create board and columns
+  if (!boardDoc) {
+    await initializeUserBoard(userId);
+    boardDoc = await Board.findOne({
+      userId: userId,
+      name: "My Job Hunt",
+    }).populate({
+      path: "columns",
+      populate: {
+        path: "jobApplications",
+      },
+    });
+  }
 
   if (!boardDoc) return null;
 

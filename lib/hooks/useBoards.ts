@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Board, Column, JobApplication } from "../models/models.types";
-import { updateJobApplication } from "../actions/job-appication";
+import { updateJobApplication } from "../actions/job-aplication";
 
 export function useBoard(initialBoard?: Board | null) {
   const [board, setBoard] = useState<Board | null>(initialBoard || null);
