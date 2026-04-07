@@ -193,7 +193,6 @@ function SortableJobCard({
 
 export default function KanbanBoard({ board, userId }: KanbanBoardProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
-  // TODO: Replace with real board logic
   const {columns, moveJob} = useBoard(board);
   const sortedColumns = columns?.sort((a: Column, b: Column) => a.order - b.order) || [];
 
@@ -301,8 +300,7 @@ export default function KanbanBoard({ board, userId }: KanbanBoardProps) {
       return;
     }
 
-    // TODO: Implement moveJob logic here
-    // await moveJob(activeId, targetColumnId, newOrder);
+    await moveJob(activeId, targetColumnId, newOrder);
   }
 
   const activeJob = sortedColumns
@@ -320,7 +318,7 @@ export default function KanbanBoard({ board, userId }: KanbanBoardProps) {
           {sortedColumns.map((col: Column, key: number) => {
             const config = COLUMN_CONFIG[key] || {
               color: "bg-gray-500",
-              icon: Calendar,
+              icon: <Calendar className="h-4 w-4" />,
             };
             return (
               <DroppableColumn
